@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Form from './Form';
+import WindowTracker from './windowTracker';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    character: {}
+  }
+
+  componentDidMount() {
+    fetch("https://swapi.dev/api/people/2")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({character: data})
+    })
+  }
+  render() {
+    return(
+      <div>
+        <h1>{this.state.character.name}</h1>
+        <WindowTracker />
+        <Form />
+      </div>
+    )
+  }
 }
 
 export default App;
