@@ -23,7 +23,8 @@ class Form extends React.Component {
             [name]: value
         })
     }
-
+// lifecycle methods
+    
     componentDidMount() {
         console.log("Mount")
         console.log(JSON.parse(localStorage.getItem("formData")))
